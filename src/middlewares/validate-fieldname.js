@@ -26,3 +26,17 @@ export const validateFieldLogin = (req, res, next) => {
     }
     next();
 };
+
+const expectedFieldEdit = ['name', 'lastName','age','username','oldUsername','email', 'password', 'oldPassword', 'role'];
+export const validateFieldEdit = (req, res, next) => {
+    const body = req.body;
+    const fields = Object.keys(body);
+    const isValid = fields.every(field => expectedFieldEdit.includes(field));
+    if (!isValid) {
+        return res.status(400).json({
+            msg: 'Invalid field',
+            expectedFieldEdit
+        });
+    }
+    next();
+};
