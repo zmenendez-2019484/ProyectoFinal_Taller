@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['ADMIN_ROLE', 'CLIENT_ROLE'],
         default: 'CLIENT_ROLE'
+    },
+    status: {
+        type: Boolean,
+        default: true
     }
 });
 
