@@ -3,6 +3,7 @@ import cors  from'cors'
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
+import userRoutes from '../src/users/user.routes.js';
 
 
 class Server {
@@ -10,16 +11,27 @@ class Server {
         this.app = express();
         this.port = process.env.PORT;
         this.conectarDB();
+        this.registerUserPath = '/registrationManagement/v1/user';
+        this.loginUserPath = '/registrationManagement/v1/user';
+        this.middlewares();
+        this.routes();
+
     }
 
     async conectarDB(){
         await dbConnection();
     }
     middlewares(){
+        this.app.use(express.urlencoded({ extended: false }));
         this.app.use(express.json());
         this.app.use(helmet());
         this.app.use(cors());
         this.app.use(morgan('dev'));
+    }
+
+    routes(){
+        this.app.use(this.registerUserPath, userRoutes);
+        this.app.use(this.loginUserPath, userRoutes);
     }
 
     listen(){
