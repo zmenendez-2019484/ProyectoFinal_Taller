@@ -54,3 +54,17 @@ export const validateFieldChangeRole = (req, res, next) => {
     }
     next();
 };
+
+const expectedFieldPostCategory = ['name', 'description'];
+export const validateFieldPostCategory = (req, res, next) => {
+    const body = req.body;
+    const fields = Object.keys(body);
+    const isValid = fields.every(field => expectedFieldPostCategory.includes(field));
+    if (!isValid) {
+        return res.status(400).json({
+            msg: 'Invalid field',
+            expectedFieldPostCategory
+        });
+    }
+    next();
+};

@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { dbConnection } from './mongo.js';
 import userRoutes from '../src/users/user.routes.js';
+import categoryRoutes from '../src/category/category.routes.js';
 
 class Server {
     constructor() {
@@ -15,6 +16,10 @@ class Server {
         this.editUserPath = '/registrationManagement/v1/user';
         this.changeRoleUserPath = '/registrationManagement/v1/user';
         this.deleteUserPath = '/registrationManagement/v1/user';
+        this.postCategoryPath = '/registrationManagement/v1/category';
+        this.getCategoriesPath = '/registrationManagement/v1/category';
+        this.getByIdCategoryPath = '/registrationManagement/v1/category';
+        this.editCategoryPath = '/registrationManagement/v1/category';
         this.middlewares();
         this.routes();
     }
@@ -37,6 +42,10 @@ class Server {
         this.app.use(this.editUserPath, userRoutes);
         this.app.use(this.changeRoleUserPath, userRoutes);
         this.app.use(this.deleteUserPath, userRoutes);
+        this.app.use(this.postCategoryPath, categoryRoutes);
+        this.app.use(this.getCategoriesPath, categoryRoutes);
+        this.app.use(this.getByIdCategoryPath, categoryRoutes);
+        this.app.use(this.editCategoryPath, categoryRoutes);
     }
 
     listen() {

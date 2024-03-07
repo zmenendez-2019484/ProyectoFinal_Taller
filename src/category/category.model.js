@@ -16,5 +16,11 @@ const categorySchema = new mongoose.Schema({
     }
 });
 
+CategorySchema.methods.toJSON = function () {
+    const {__v, _id, ...category} = this.toObject();
+    category.uid = _id;
+    return category;
+}
+
 const Category = mongoose.model('Category', categorySchema);
 export default Category;
