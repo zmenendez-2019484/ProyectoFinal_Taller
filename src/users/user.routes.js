@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { check, validationResult } from 'express-validator';
-import { register, login, editUser, deleteUser} from './user.controller.js';
+import { register, login, editUser, deleteUser, changeUserRole } from './user.controller.js';
 import { validateFields } from '../middlewares/validate-fields.js';
 import { validateJWT } from '../middlewares/validate-jwt.js';
-import { validateFieldRegister, validateFieldLogin, validateFieldEdit } from '../middlewares/validate-fieldname.js';
+import { validateFieldRegister, validateFieldLogin, validateFieldEdit, validateFieldChangeRole } from '../middlewares/validate-fieldname.js';
 import { existsEmail, existsUsername } from '../helpers/db-validator.js';
 const router = Router();
 
@@ -40,6 +40,13 @@ router.put('/edit', [
     validateFieldEdit,
     validateFields
 ], editUser);
+
+router.put('/editRole', [
+    validateJWT,
+    validateFields,
+    validateFieldChangeRole
+], changeUserRole);
+
 
 router.delete('/delete', [
     validateJWT,
