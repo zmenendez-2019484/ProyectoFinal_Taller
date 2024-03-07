@@ -11,6 +11,7 @@ export const postCategory = async (req, res) => {
 
         const { name, description } = req.body;
         const category = new Category({ name, description });
+
         await category.save();
         res.status(201).json({
             msg: "Category created successfully",
@@ -73,17 +74,30 @@ export const getCategoryById = async (req, res) => {
 // Update category by id
 export const updateCategory = async (req, res) => {
     try {
+        // Verificar si el usuario es un administrador
         if (req.user.role !== 'ADMIN_ROLE') {
             return res.status(401).json({
                 msg: "Not authorized to update categories"
             });
         }
+
         const { id } = req.params;
         const { name, description } = req.body;
-        const category = await Category.findByIdAndUpdate(id, { name, description }, { new: true });
+
+        // Verificar si la categoría existe
+        const category = await Category.findById(id);
+        if (!category) {
+            return res.status(404).json({
+                msg: 'Category not found'
+            });
+        }
+
+        // Actualizar la categoría si existe
+        const updatedCategory = await Category.findByIdAndUpdate(id, { name, description }, { new: true });
+
         res.status(200).json({
             msg: "Category updated successfully",
-            category
+            category: updatedCategory
         });
     } catch (error) {
         console.log(error);
@@ -92,3 +106,4 @@ export const updateCategory = async (req, res) => {
         });
     }
 }
+

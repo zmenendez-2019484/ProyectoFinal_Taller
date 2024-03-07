@@ -1,4 +1,5 @@
 import User from '../users/user.model.js';
+import Category from '../category/category.model.js';
 
 export const existsEmail = async (email = '') => {
     const existEmail = await User.findOne({ email });
@@ -14,9 +15,16 @@ export const existsUsername = async (username = '') => {
     }
 }
 
-export const existsCategoryId = async (id) => {
-    const exist = await Category.findById(id);
-    if (!exist) {
-        throw new Error(`El id ${id} no existe`);
+export const existsCategoryId = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        const category = await Category.findById(id);
+        if (!category) {
+            return res.status(404).json({ msg: 'Category not found' });
+        }
+        next();
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'Failed to validate category' });
     }
-}
+};

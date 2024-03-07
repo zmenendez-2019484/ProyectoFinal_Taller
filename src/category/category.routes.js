@@ -29,7 +29,7 @@ router.put('/:id', [
     validateJWT,
     check('id', 'Id is required').not().isEmpty(),
     check("id", "No es un ID válido").isMongoId(),
-    check("id").custom(existsCategoryId),
+    existsCategoryId,
     check('name', 'Name is required').not().isEmpty(),
     check('description', 'Description is required').not().isEmpty(),
     validateFields
