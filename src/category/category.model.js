@@ -1,4 +1,3 @@
-import exp from 'constants';
 import mongoose from 'mongoose';
 
 const CategorySchema = new mongoose.Schema({
@@ -22,4 +21,5 @@ CategorySchema.methods.toJSON = function () {
     return category;
 };
 
-export default CategorySchema;
+const Category = mongoose.model('Category', CategorySchema);
+export default Category;

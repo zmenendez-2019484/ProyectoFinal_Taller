@@ -28,7 +28,7 @@ export const postCategory = async (req, res) => {
 export const getCategories = async (req, res) => {
     try {
         const categories = await Category.find({ status: true });
-        if (!categories) {
+        if (categories.length === 0) {
             return res.status(404).json({
                 msg: "No categories found"
             });
@@ -39,7 +39,7 @@ export const getCategories = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).json({
-            msg: "Failed to get categories"
+            msg: "Failed to get categories", error: error.message
         });
     }
 }
