@@ -1,7 +1,7 @@
 import exp from 'constants';
 import mongoose from 'mongoose';
 
-const categorySchema = new mongoose.Schema({
+const CategorySchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -20,7 +20,6 @@ CategorySchema.methods.toJSON = function () {
     const {__v, _id, ...category} = this.toObject();
     category.uid = _id;
     return category;
-}
+};
 
-const Category = mongoose.model('Category', categorySchema);
-export default Category;
+export default CategorySchema;
