@@ -26,7 +26,13 @@ router.post('/', [
 ], postProduct);
 
 router.get('/', [
-    validateJWT
+    validateJWT,
+    check('id', 'Id is not a valid MONGODB format').isMongoId()
 ], getProducts);
+
+router.get('/:id', [
+    validateJWT,
+    check('id', 'Id is not a valid MONGODB format').isMongoId()
+], getProductById);
 
 export default router;
