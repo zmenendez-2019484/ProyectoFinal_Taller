@@ -82,3 +82,17 @@ export const validateFieldProduct = (req, res, next) => {
     }
     next();
 };
+
+const expectedFieldSearchProduct = ['name'];
+export const validateFieldSearchProduct = (req, res, next) => {
+    const body = req.body;
+    const fields = Object.keys(body);
+    const isValid = fields.every(field => expectedFieldSearchProduct.includes(field));
+    if (!isValid) {
+        return res.status(400).json({
+            msg: 'Invalid field',
+            expectedFieldSearchProduct
+        });
+    }
+    next();
+};

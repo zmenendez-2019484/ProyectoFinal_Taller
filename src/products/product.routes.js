@@ -9,7 +9,7 @@ import {
 } from './product.controller.js';
 import { existsCategoryId } from '../helpers/db-validator.js';
 import { getCategories } from '../category/category.controller.js';
-import { validateFieldProduct } from '../middlewares/validate-fieldname.js';
+import { validateFieldProduct, validateFieldSearchProduct } from '../middlewares/validate-fieldname.js';
 
 const router = Router();
 
@@ -62,5 +62,12 @@ router.delete('/:id', [
     validateJWT,
     check('id', 'Id is not a valid MONGODB format').isMongoId()
 ], deleteProduct);
+
+router.post('/search', [
+    validateJWT,
+    check('name', 'Name is required').not().isEmpty(),
+    validateFieldSearchProduct,
+    validateFields
+], searchProducts);
 
 export default router;

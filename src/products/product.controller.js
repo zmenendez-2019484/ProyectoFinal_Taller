@@ -267,7 +267,7 @@ export const searchProducts = async (req, res) => {
             });
         }
 
-        const { name } = req.query;
+        const { name } = req.body;
 
         // Busca productos que contengan el nombre
         // $regex expresion que busca coincidencias
