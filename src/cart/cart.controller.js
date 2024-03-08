@@ -10,9 +10,12 @@ export const addToCart = async (req, res) => {
             });
         }
 
-        //jala el id del usuario
+        // Obtiene el ID del usuario
         const userId = req.user._id;
         const { productId, quantity } = req.body;
+
+        // Asegúrate de que la cantidad es un número
+        const quantityNumber = parseInt(quantity, 10);
 
         // Comprueba si el producto existe
         const product = await Product.findById(productId);
@@ -21,29 +24,29 @@ export const addToCart = async (req, res) => {
         }
 
         // Comprueba si hay suficiente stock
-        if (product.stock < quantity) {
+        if (product.stock < quantityNumber) {
             return res.status(400).json({ message: "Stock insuficiente" });
         }
 
         // Actualiza el stock del producto
-        product.stock -= quantity;
+        product.stock -= quantityNumber;
         await product.save();
 
-        // SI no tiene carrito, crea uno
+        // Busca el carrito del usuario o crea uno nuevo si no existe
         let cart = await Cart.findOne({ userId: userId });
         if (!cart) {
             cart = new Cart({ userId: userId });
             await cart.save();
         }
 
-        // Agregar el producto al carrito
+        // Agrega el producto al carrito o actualiza la cantidad si ya está en el carrito
         const itemIndex = cart.products.findIndex(item => item.productId.toString() === productId);
         if (itemIndex >= 0) {
-            // Si el producto ya está, se suma la cantidad
-            cart.products[itemIndex].quantity += quantity;
+            // Si el producto ya está en el carrito, incrementa la cantidad
+            cart.products[itemIndex].quantity += quantityNumber;
         } else {
-            // Si no esta, se agrega
-            cart.products.push({ productId: productId, quantity });
+            // Si el producto no está en el carrito, lo agrega
+            cart.products.push({ productId: productId, quantity: quantityNumber });
         }
         await cart.save();
 
@@ -57,6 +60,7 @@ export const addToCart = async (req, res) => {
         });
     }
 };
+
 
 //get cart
 export const getCart = async (req, res) => {
@@ -114,5 +118,64 @@ export const removeFromCart = async (req, res) => {
         });
     }
 };
+
+//put cart
+export const putCart = async (req, res) => {
+    try {
+        // Coprubea si el usuario tiene el rol correcto
+        if (req.user.role !== 'CLIENT_ROLE') {
+            return res.status(401).json({
+                msg: "No autorizado para actualizar el carrito"
+            });
+        }
+
+        // Obtiene el ID del usuario
+        const userId = req.user._id;
+        const { productId, newQuantity } = req.body;
+
+        // Busca el carrito del usuario
+        const cart = await Cart.findOne({ userId: userId });
+        if (!cart) {
+            return res.status(404).json({ message: "Carrito no encontrado" });
+        }
+
+        // Busca el producto en el carrito
+        const itemIndex = cart.products.findIndex(item => item.productId.toString() === productId);
+        if (itemIndex < 0) {
+            return res.status(404).json({ message: "Producto no encontrado en el carrito" });
+        }
+
+        // Comprueba si hay suficiente stock para la nueva cantidad
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ message: "Producto no encontrado" });
+        }
+        if (product.stock < newQuantity) {
+            return res.status(400).json({ message: "Stock insuficiente" });
+        }
+
+        // Actualiza la cantidad del producto en el carrito
+        cart.products[itemIndex].quantity = newQuantity;
+
+        // Actualiza el stock del producto
+        product.stock -= (newQuantity - cart.products[itemIndex].quantity);
+        await product.save();
+
+        // Guarda los cambios en el carrito
+        await cart.save();
+
+        res.status(200).json({
+            message: "Cantidad de producto actualizada en el carrito",
+            cart
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            message: "Error al actualizar el carrito",
+            error: error.message
+        });
+    }
+};
+
 
 
