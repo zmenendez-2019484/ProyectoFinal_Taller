@@ -9,7 +9,7 @@ import {
 } from './product.controller.js';
 import { existsCategoryId } from '../helpers/db-validator.js';
 import { getCategories } from '../category/category.controller.js';
-import { validateFieldPostProduct } from '../middlewares/validate-fieldname.js';
+import { validateFieldProduct } from '../middlewares/validate-fieldname.js';
 
 const router = Router();
 
@@ -21,7 +21,7 @@ router.post('/', [
     check('category', 'Category is required').not().isEmpty(),
     check('category', 'Id is not a valid MONGODB format').isMongoId(),
     check('stock', 'Stock is required').not().isEmpty(),
-    validateFieldPostProduct,
+    validateFieldProduct,
     validateFields
 ], postProduct);
 
@@ -34,5 +34,13 @@ router.get('/:id', [
     validateJWT,
     check('id', 'Id is not a valid MONGODB format').isMongoId()
 ], getProductById);
+
+router.put('/:id', [
+    validateJWT,
+    check('id', 'Id is not a valid MONGODB format').isMongoId(),
+    check('category', 'Id is not a valid MONGODB format').isMongoId(),
+    validateFieldProduct,
+    validateFields
+], updateProduct);
 
 export default router;

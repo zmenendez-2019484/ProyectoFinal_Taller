@@ -70,7 +70,7 @@ export const validateFieldPostCategory = (req, res, next) => {
 };
 
 const expectedFieldPostProduct = ['name', 'description', 'price', 'category', 'stock'];
-export const validateFieldPostProduct = (req, res, next) => {
+export const validateFieldProduct = (req, res, next) => {
     const body = req.body;
     const fields = Object.keys(body);
     const isValid = fields.every(field => expectedFieldPostProduct.includes(field));
