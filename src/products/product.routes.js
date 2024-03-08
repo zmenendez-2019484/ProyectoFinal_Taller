@@ -50,4 +50,12 @@ router.put('/control-inventory/:id', [
     validateFields
 ], controlInventory);
 
+router.get('/best/sellings', [
+    validateJWT
+], getBestSellingProducts);
+
+router.get('/out/stock', [
+    validateJWT
+], getOutOfStockProducts);
+
 export default router;

@@ -202,19 +202,21 @@ export const getOutOfStockProducts = async (req, res) => {
     }
 };
 
-//Best selling products
+// Best selling products
 export const getBestSellingProducts = async (req, res) => {
     try {
-        if (req.user.role !== 'ADMIN_ROLE') {
-            return res.status(401).json({
-                msg: "Not authorized to get best selling products"
+
+        // selecciona productos cuyo campo sold es mayor que 0
+        const products = await Product.find({ sold: { $gt: 0 } }).
+            //sort by sold in descending order and limit to 3
+            sort({ sold: -1 }).limit(3);
+        if (products.length === 0) {
+            return res.status(404).json({
+                msg: "No products have been sold yet"
             });
         }
-
-        //sort by sold in descending order and limit to 10
-        const products = await Product.find({}).sort({ sold: -1 }).limit(10);
         res.status(200).json({
-            msg: "Best selling products",
+            msg: "Top 3 best selling products",
             products
         });
     } catch (error) {
@@ -224,6 +226,7 @@ export const getBestSellingProducts = async (req, res) => {
         });
     }
 };
+
 
 //Delete product by id
 export const deleteProduct = async (req, res) => {
