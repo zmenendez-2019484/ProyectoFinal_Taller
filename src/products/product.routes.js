@@ -70,6 +70,10 @@ router.post('/search', [
     validateFields
 ], searchProducts);
 
+router.get('/get/categories', [
+    validateJWT
+], getCategories);
+
 router.get('/get/category', [
     validateJWT,
     check('id', 'Id is not a valid MONGODB format').isMongoId()

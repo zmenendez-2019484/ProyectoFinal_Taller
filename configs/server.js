@@ -23,6 +23,7 @@ class Server {
         this.getCategoriesPath = '/registrationManagement/v1/category';
         this.getByIdCategoryPath = '/registrationManagement/v1/category';
         this.editCategoryPath = '/registrationManagement/v1/category';
+        this.deleteCategoryPath = '/registrationManagement/v1/category';
         //product
         this.postProductPath = '/registrationManagement/v1/product';
         this.getProductsPath = '/registrationManagement/v1/product';
@@ -62,6 +63,7 @@ class Server {
         this.app.use(this.getCategoriesPath, categoryRoutes);
         this.app.use(this.getByIdCategoryPath, categoryRoutes);
         this.app.use(this.editCategoryPath, categoryRoutes);
+        this.app.use(this.deleteCategoryPath, categoryRoutes);
         //product
         this.app.use(this.postProductPath, productRoutes);
         this.app.use(this.getProductsPath, productRoutes);

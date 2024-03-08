@@ -3,7 +3,7 @@ import { check } from 'express-validator';
 import { validateFields } from '../middlewares/validate-fields.js';
 import { validateJWT } from '../middlewares/validate-jwt.js';
 import { validateFieldPostCategory } from '../middlewares/validate-fieldname.js';
-import { postCategory, getCategories, getCategoryById, updateCategory } from './category.controller.js';
+import { postCategory, getCategories, getCategoryById, updateCategory, deleteCategory } from './category.controller.js';
 import { existsCategoryId } from '../helpers/db-validator.js';
 
 const router = Router();
@@ -34,5 +34,12 @@ router.put('/:id', [
     check('description', 'Description is required').not().isEmpty(),
     validateFields
 ], updateCategory);
+
+router.delete('/:id', [
+    validateJWT,
+    check('id', 'Id is required').not().isEmpty(),
+    check("id", "No es un ID válido").isMongoId(),
+    existsCategoryId
+], deleteCategory);
 
 export default router;
