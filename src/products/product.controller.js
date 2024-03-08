@@ -307,6 +307,7 @@ export const getProductsByCategory = async (req, res) => {
 
         // Comprueba si la categoría existe
         const category = await Category.findById(categoryId);
+        console.log(categoryId);
         if (!category) {
             return res.status(404).json({
                 msg: "Category not found"

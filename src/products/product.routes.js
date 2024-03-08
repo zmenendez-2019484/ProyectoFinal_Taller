@@ -75,4 +75,9 @@ router.get('/get/category', [
     check('id', 'Id is not a valid MONGODB format').isMongoId()
 ], getCategories);
 
+router.get('/get/category/:categoryId', [
+    validateJWT,
+    check('id', 'Id is not a valid MONGODB format').isMongoId()
+], getProductsByCategory);
+
 export default router;
