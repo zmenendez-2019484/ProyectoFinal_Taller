@@ -160,6 +160,12 @@ export const controlInventory = async (req, res) => {
             });
         }
 
+        if (isNaN(stock)) {
+            return res.status(400).json({
+                msg: "Stock must be a number"
+            });
+        }
+
         // Actualiza el stock
         const updatedProduct = await Product.findByIdAndUpdate(id, { stock }, { new: true });
 

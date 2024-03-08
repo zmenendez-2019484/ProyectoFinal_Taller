@@ -43,4 +43,11 @@ router.put('/:id', [
     validateFields
 ], updateProduct);
 
+router.put('/control-inventory/:id', [
+    validateJWT,
+    check('id', 'Id is not a valid MONGODB format').isMongoId(),
+    check('stock', 'Stock is required').not().isEmpty(),
+    validateFields
+], controlInventory);
+
 export default router;
