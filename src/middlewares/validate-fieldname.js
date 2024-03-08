@@ -68,3 +68,17 @@ export const validateFieldPostCategory = (req, res, next) => {
     }
     next();
 };
+
+const expectedFieldPostProduct = ['name', 'description', 'price', 'category', 'stock'];
+export const validateFieldPostProduct = (req, res, next) => {
+    const body = req.body;
+    const fields = Object.keys(body);
+    const isValid = fields.every(field => expectedFieldPostProduct.includes(field));
+    if (!isValid) {
+        return res.status(400).json({
+            msg: 'Invalid field',
+            expectedFieldPostProduct
+        });
+    }
+    next();
+};

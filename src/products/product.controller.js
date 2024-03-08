@@ -10,6 +10,12 @@ export const postProduct = async (req, res) => {
             });
         }
 
+        if (isNaN(req.body.price) || isNaN(req.body.stock)) {
+            return res.status(400).json({
+                msg: "Price and stock must be numbers"
+            });
+        }
+
         const { name, description, price, category, stock } = req.body;
         const product = new Product({ name, description, price, category, stock });
 
@@ -103,6 +109,14 @@ export const updateProduct = async (req, res) => {
                 msg: "Product is marked as deleted and cannot be updated"
             });
         }
+
+        // Comprueba si el precio y el stock son números
+        if (isNaN(price) || isNaN(stock)) {
+            return res.status(400).json({
+                msg: "Price and stock must be numbers"
+            });
+        }
+
 
         // Actualiza el producto
         const updatedProduct = await Product.findByIdAndUpdate(id,
