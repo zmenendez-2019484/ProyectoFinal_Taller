@@ -35,6 +35,10 @@ class Server {
         this.deleteProductPath = '/registrationManagement/v1/product';
         this.searchProductPath = '/registrationManagement/v1/product';
         this.getProductosByCategoryPath = '/registrationManagement/v1/product';
+        //cart
+        this.addToCartPath = '/registrationManagement/v1/cart';
+        this.getCartPath = '/registrationManagement/v1/cart';
+        this.removeFromCartPath = '/registrationManagement/v1/cart';
         this.middlewares();
         this.routes();
     }
@@ -75,6 +79,11 @@ class Server {
         this.app.use(this.deleteProductPath, productRoutes);
         this.app.use(this.searchProductPath, productRoutes);
         this.app.use(this.getProductosByCategoryPath, productRoutes);
+        //cart
+        this.app.use(this.addToCartPath, cartRoutes);
+        this.app.use(this.getCartPath, cartRoutes);
+        this.app.use(this.removeFromCartPath, cartRoutes);
+        
     }
 
     listen() {

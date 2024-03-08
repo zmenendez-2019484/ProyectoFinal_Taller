@@ -4,6 +4,12 @@ import Product from "../products/product.model.js";
 //add to cart
 export const addToCart = async (req, res) => {
     try {
+        if (req.user.role !== 'CLIENT_ROLE') {
+            return res.status(401).json({
+                msg: "Not authorized to add cart"
+            });
+        }
+
         //jala el id del usuario
         const userId = req.user._id;
         const { productId, quantity } = req.body;

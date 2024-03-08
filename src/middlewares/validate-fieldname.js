@@ -96,3 +96,17 @@ export const validateFieldSearchProduct = (req, res, next) => {
     }
     next();
 };
+
+const expectedFieldAddCart = ['productId', 'quantity'];
+export const validateFieldAddCart = (req, res, next) => {
+    const body = req.body;
+    const fields = Object.keys(body);
+    const isValid = fields.every(field => expectedFieldAddCart.includes(field));
+    if (!isValid) {
+        return res.status(400).json({
+            msg: 'Invalid field',
+            expectedFieldAddCart
+        });
+    }
+    next();
+};
