@@ -8,7 +8,7 @@ import {
     searchProducts, updateProduct
 } from './product.controller.js';
 import { existsCategoryId } from '../helpers/db-validator.js';
-import {getCategories} from '../category/category.controller.js';
+import { getCategories } from '../category/category.controller.js';
 import { validateFieldPostProduct } from '../middlewares/validate-fieldname.js';
 
 const router = Router();
@@ -24,5 +24,9 @@ router.post('/', [
     validateFieldPostProduct,
     validateFields
 ], postProduct);
+
+router.get('/', [
+    validateJWT
+], getProducts);
 
 export default router;
