@@ -58,4 +58,9 @@ router.get('/out/stock', [
     validateJWT
 ], getOutOfStockProducts);
 
+router.delete('/:id', [
+    validateJWT,
+    check('id', 'Id is not a valid MONGODB format').isMongoId()
+], deleteProduct);
+
 export default router;
