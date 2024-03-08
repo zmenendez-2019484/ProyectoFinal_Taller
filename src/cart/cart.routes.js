@@ -21,13 +21,11 @@ router.get('/', [
 ], getCart);
 
 router.delete('/:id', [
-    validateJWT,
-    check('id', 'id is required').not().isEmpty()
+    validateJWT
 ], removeFromCart);
 
-router.put('/:id', [
-    validateJWT,
-    check('id', 'id is required').not().isEmpty()
+router.put('/', [
+    validateJWT
 ], putCart);
 
 export default router;
