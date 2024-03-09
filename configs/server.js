@@ -7,6 +7,7 @@ import userRoutes from '../src/users/user.routes.js';
 import categoryRoutes from '../src/category/category.routes.js';
 import productRoutes from '../src/products/product.routes.js';
 import cartRoutes from '../src/cart/cart.routes.js';
+import purchaseRoutes from '../src/purchase/purchase.routes.js';
 
 class Server {
     constructor() {
@@ -41,6 +42,9 @@ class Server {
         this.getCartPath = '/registrationManagement/v1/cart';
         this.removeFromCartPath = '/registrationManagement/v1/cart';
         this.putCartPath = '/registrationManagement/v1/cart';
+        //purchase
+        this.getPurchaseHistoryPath = '/registrationManagement/v1/purchase';
+        this.completePurchasePath = '/registrationManagement/v1/purchase';
         this.middlewares();
         this.routes();
     }
@@ -86,6 +90,9 @@ class Server {
         this.app.use(this.getCartPath, cartRoutes);
         this.app.use(this.removeFromCartPath, cartRoutes);
         this.app.use(this.putCartPath, cartRoutes);
+        //purchase
+        this.app.use(this.getPurchaseHistoryPath, purchaseRoutes);
+        this.app.use(this.completePurchasePath, purchaseRoutes);
     }
 
     listen() {

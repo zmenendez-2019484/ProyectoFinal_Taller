@@ -1,6 +1,5 @@
 import Cart from "./cart.model.js";
 import Product from "../products/product.model.js";
-
 //add to cart
 export const addToCart = async (req, res) => {
     try {
@@ -28,15 +27,15 @@ export const addToCart = async (req, res) => {
         // Busca el carrito del usuario con status true
         let cart = await Cart.findOne({ userId: userId, status: true });
 
-        // Busca un carrito inactivo del usuario
+        // Si no hay un carrito activo, busca un carrito inactivo y lo activa
         if (!cart) {
             cart = await Cart.findOne({ userId: userId, status: false });
             if (cart) {
-                //Lo encuentra, lo activa y lo guarda
+                // Activa el carrito inactivo
                 cart.status = true;
                 await cart.save();
             } else {
-                // SI no encuentra carrito, crea uno nuevo
+                // Si no encuentra carrito, crea uno nuevo
                 cart = new Cart({ userId: userId, status: true });
                 await cart.save();
             }
@@ -62,7 +61,6 @@ export const addToCart = async (req, res) => {
         });
     }
 };
-
 
 //get cart
 export const getCart = async (req, res) => {
