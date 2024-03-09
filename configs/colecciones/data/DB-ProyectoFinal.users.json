@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "65e5fc7ab5f45fb4b243a5db"
+  },
+  "name": "Ottoniel",
+  "lastName": "Menéndez",
+  "age": 17,
+  "username": "omenendez",
+  "email": "zmenedez@kinal.com",
+  "password": "$2a$10$.n4M4DTHydfxN0UbdGqPo.mN5ZdYim1feeKgcxuTQ383VJwcQ6822",
+  "role": "ADMIN_ROLE",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e5fce8b5f45fb4b243a5df"
+  },
+  "name": "Braulio",
+  "lastName": "Echeverria",
+  "age": 41,
+  "username": "becheverria",
+  "email": "echeverria@kinal.com",
+  "password": "$2a$10$tM5G.AiKRCJemKfELnpB.uochA.fD8ATzKjiFBTUol399KiF1YboG",
+  "role": "CLIENT_ROLE",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e8b30134714344a2d8dd8c"
+  },
+  "name": "Oscar",
+  "lastName": "Morales",
+  "age": 17,
+  "username": "omorales",
+  "email": "omorales@kinal.com",
+  "password": "$2a$10$2u5kEBqrf0qPbvW1K31Hv.nvgzAgQn5OuiotpJKiif8V1hChOxgdG",
+  "role": "CLIENT_ROLE",
+  "status": true,
+  "__v": 0
+}]

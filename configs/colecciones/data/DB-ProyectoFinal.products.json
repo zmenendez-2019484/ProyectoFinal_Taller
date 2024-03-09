@@ -1,0 +1,60 @@
+[{
+  "_id": {
+    "$oid": "65eac755ad1da75a349e67fa"
+  },
+  "name": "Pañales",
+  "description": "Pañales para recién naciados",
+  "price": 10.99,
+  "category": {
+    "$oid": "65e9a041f12f8810c6ad8f23"
+  },
+  "stock": 45,
+  "sold": 0,
+  "status": "true",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eac9094c5082341ea14b79"
+  },
+  "name": "Pachas",
+  "description": "Pachas para recién nacidos",
+  "price": 22.99,
+  "category": {
+    "$oid": "65e9a041f12f8810c6ad8f23"
+  },
+  "stock": 88,
+  "sold": 0,
+  "status": "true",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eaf67a400869f7ab9594b7"
+  },
+  "name": "Camisetas para bebé",
+  "description": "Camisetas para recién nacidos",
+  "price": 15.99,
+  "category": {
+    "$oid": "65e9a041f12f8810c6ad8f23"
+  },
+  "stock": 0,
+  "sold": 0,
+  "status": "false",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eb24210470176d5224dc9e"
+  },
+  "name": "Camisolas",
+  "description": "Camisolas de la premier",
+  "price": 40.99,
+  "category": {
+    "$oid": "65eb192d66db755c085f3aab"
+  },
+  "stock": 70,
+  "sold": 0,
+  "status": "true",
+  "__v": 0
+}]

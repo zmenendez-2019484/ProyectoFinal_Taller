@@ -1,0 +1,71 @@
+[{
+  "_id": {
+    "$oid": "65ebd663626ce18d73d2f5f9"
+  },
+  "invoiceId": {
+    "$oid": "65ebd663626ce18d73d2f5f4"
+  },
+  "userId": {
+    "$oid": "65e5fce8b5f45fb4b243a5df"
+  },
+  "products": [
+    {
+      "productId": {
+        "$oid": "65eb24210470176d5224dc9e"
+      },
+      "quantity": 10,
+      "price": 40.99,
+      "total": 409.90000000000003,
+      "_id": {
+        "$oid": "65ebd663626ce18d73d2f5fa"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "65eac755ad1da75a349e67fa"
+      },
+      "quantity": 20,
+      "price": 10.99,
+      "total": 219.8,
+      "_id": {
+        "$oid": "65ebd663626ce18d73d2f5fb"
+      }
+    }
+  ],
+  "totalPrice": 629.7,
+  "purchaseDate": {
+    "$date": "2024-03-09T03:24:19.609Z"
+  },
+  "status": "completed",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65ebd76fde3f150ca6b1004d"
+  },
+  "invoiceId": {
+    "$oid": "65ebd76fde3f150ca6b10049"
+  },
+  "userId": {
+    "$oid": "65e5fce8b5f45fb4b243a5df"
+  },
+  "products": [
+    {
+      "productId": {
+        "$oid": "65eac755ad1da75a349e67fa"
+      },
+      "quantity": 5,
+      "price": 10.99,
+      "total": 54.95,
+      "_id": {
+        "$oid": "65ebd76fde3f150ca6b1004e"
+      }
+    }
+  ],
+  "totalPrice": 54.95,
+  "purchaseDate": {
+    "$date": "2024-03-09T03:28:47.924Z"
+  },
+  "status": "completed",
+  "__v": 0
+}]

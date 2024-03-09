@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "65e9a041f12f8810c6ad8f23"
+  },
+  "name": "Bebés",
+  "description": "área donde se encuentras cosas para bebés",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eb190d8a3e1a9484226452"
+  },
+  "name": "Productos sin categoria",
+  "description": "Aqui van los productos que estan sin categoria",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eb192d66db755c085f3aab"
+  },
+  "name": "Productos sin categoria 2",
+  "description": "Aqui van los productos que estan sin categoria",
+  "status": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65eb23ef0470176d5224dc9b"
+  },
+  "name": "Productos deportivos",
+  "description": "Aqui van los productos que son deportivos",
+  "status": false,
+  "__v": 0
+}]
