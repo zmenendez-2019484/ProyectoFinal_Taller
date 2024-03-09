@@ -1,4 +1,5 @@
 import Invoice from "./invoice.model.js";
+import Product from "../products/product.model.js";
 
 export const getUserPurchaseHistory = async (req, res) => {
     try {
@@ -16,10 +17,11 @@ export const getUserPurchaseHistory = async (req, res) => {
             message: "Error al recuperar el historial de compras", error: error.message
         });
     }
+
 };
+
 export const editInvoice = async (req, res) => {
     try {
-
         if (req.user.role !== 'ADMIN_ROLE') {
             return res.status(401).json({
                 msg: "Not authorized to edit invoices."
@@ -49,6 +51,9 @@ export const editInvoice = async (req, res) => {
         productInInvoice.quantity = newQuantity;
         productInInvoice.total = newQuantity * productInInvoice.price;
 
+        // Recalcular el total de la factura
+        invoice.totalPrice = invoice.products.reduce((total, product) => total + product.total, 0);
+
         // Actualizar el stock del producto
         product.stock -= (newQuantity - productInInvoice.quantity);
         await product.save();
@@ -66,6 +71,8 @@ export const editInvoice = async (req, res) => {
         });
     }
 };
+
+
 
 export const getUserInvoices = async (req, res) => {
     try {
