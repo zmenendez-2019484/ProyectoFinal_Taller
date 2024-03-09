@@ -4,6 +4,12 @@ import Invoice from "../invoice/invoice.model.js";
 
 export const completePurchase = async (req, res) => {
     try {
+
+        if (req.user.role !== 'CLIENT_ROLE') {
+            return res.status(401).json({
+                msg: "Not authorized to complete purchases."
+            });
+        }
         const userId = req.user._id;
 
         // Buscar el carrito del usuario, con status true
