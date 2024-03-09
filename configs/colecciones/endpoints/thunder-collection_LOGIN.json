@@ -1,0 +1,114 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "LOGIN",
+    "dateExported": "2024-03-09T05:02:15.047Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "e9021d7f-3fb8-495b-b01c-dbc896e67920",
+            "colId": "beae2ca9-82d3-4611-b0ef-5a621e882de4",
+            "containerId": "",
+            "name": "registerUser",
+            "url": "http://localhost:3000/registrationManagement/v1/user/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-04T16:37:00.684Z",
+            "modified": "2024-03-06T18:16:33.987Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Oscar\",\n  \"lastName\": \"Morales\",\n  \"age\": \"17\",\n  \"username\": \"omorales\",\n  \"email\": \"omorales@kinal.com\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "4c07d2fb-f5d9-498f-8925-cfbf509df5aa",
+            "colId": "beae2ca9-82d3-4611-b0ef-5a621e882de4",
+            "containerId": "",
+            "name": "loginUser",
+            "url": "http://localhost:3000/registrationManagement/v1/user/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-03-04T16:55:52.046Z",
+            "modified": "2024-03-09T04:41:16.098Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"omenendez\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d85ea435-e36c-41b5-b739-7ff70ead23b1",
+            "colId": "beae2ca9-82d3-4611-b0ef-5a621e882de4",
+            "containerId": "",
+            "name": "putUser",
+            "url": "http://localhost:3000/registrationManagement/v1/user/edit",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-03-06T17:39:52.636Z",
+            "modified": "2024-03-06T18:12:29.598Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmNlOGI1ZjQ1ZmI0YjI0M2E1ZGYiLCJpYXQiOjE3MDk3NDc5NDMsImV4cCI6MTcwOTc1MTU0M30.-GuChH9rMrlmE8l6Swe5jJTzNT9khNW9OC0W8Zm5bZw"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Braulio\",\n  \"lastName\": \"Echeverria\",\n  \"age\" : \"41\",\n  \"username\": \"becheverria\",\n  \"email\" : \"echeverria@kinal.com\",\n  \"oldPassword\": \"1234567\",\n  \"password\": \"123456\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "20e05c7e-0c10-43f2-a5d5-e0a45b2a8e2b",
+            "colId": "beae2ca9-82d3-4611-b0ef-5a621e882de4",
+            "containerId": "",
+            "name": "deleteUser",
+            "url": "http://localhost:3000/registrationManagement/v1/user/delete",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-03-06T18:08:43.205Z",
+            "modified": "2024-03-06T18:14:40.461Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmNlOGI1ZjQ1ZmI0YjI0M2E1ZGYiLCJpYXQiOjE3MDk3NDg3NTksImV4cCI6MTcwOTc1MjM1OX0.KJC3zUvvlKOqTTomCms1e0IH1dJhQFr1V9hfg2xHNgI"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "91c3334f-a111-412c-8659-6fb4bb564a06",
+            "colId": "beae2ca9-82d3-4611-b0ef-5a621e882de4",
+            "containerId": "",
+            "name": "editRoleUser",
+            "url": "http://localhost:3000/registrationManagement/v1/user/editRole",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-03-06T19:17:16.398Z",
+            "modified": "2024-03-07T04:17:06.832Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk3ODQ5OTMsImV4cCI6MTcwOTc4ODU5M30.Vf9tfkqS42r08DJE-KBxdIK36mdaUTYz2mSyaOpDXAs"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"userId\": \"65e8b30134714344a2d8dd8c\",\n  \"newRole\": \"CLIENT_ROLE\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

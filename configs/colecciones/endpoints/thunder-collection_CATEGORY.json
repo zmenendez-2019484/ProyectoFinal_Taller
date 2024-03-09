@@ -1,0 +1,109 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "CATEGORY",
+    "dateExported": "2024-03-09T05:02:55.852Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "5a653dd5-9634-47cc-bbbf-ee3f1476a773",
+            "colId": "df8b9549-6dcf-4d97-a8e5-cf7d05169397",
+            "containerId": "",
+            "name": "getCategories",
+            "url": "http://localhost:3000/registrationManagement/v1/category",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-03-07T10:58:12.529Z",
+            "modified": "2024-03-07T10:59:00.670Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "fa438ae9-802f-4c93-b481-6a7eb07405f1",
+            "colId": "df8b9549-6dcf-4d97-a8e5-cf7d05169397",
+            "containerId": "",
+            "name": "postCategories",
+            "url": "http://localhost:3000/registrationManagement/v1/category",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-03-07T11:07:04.196Z",
+            "modified": "2024-03-08T14:42:55.187Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk5MDYxNDYsImV4cCI6MTcwOTkwOTc0Nn0.zUQYwiMSeL8EYJy3gBmu7m24AGcF_wWDSZZcO32-_JU"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Productos deportivos\",\n  \"description\": \"Aqui van los productos que son deportivos\"\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "444664dc-7bef-45d6-92b5-f201930bd783",
+            "colId": "df8b9549-6dcf-4d97-a8e5-cf7d05169397",
+            "containerId": "",
+            "name": "getCategoriesById",
+            "url": "http://localhost:3000/registrationManagement/v1/category/65e9a041f12f8810c6aad823",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-03-07T11:09:39.152Z",
+            "modified": "2024-03-07T11:10:21.276Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk4MDk2ODIsImV4cCI6MTcwOTgxMzI4Mn0.nsXAmnRT5RiQOV88zE1kEwX_B4-xIz6y3rGsH3mAyv0"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "e3d63ae5-3fa1-4c94-91ca-98d7f4d92991",
+            "colId": "df8b9549-6dcf-4d97-a8e5-cf7d05169397",
+            "containerId": "",
+            "name": "editCategory",
+            "url": "http://localhost:3000/registrationManagement/v1/category/65e9a041f12f8810c6ad8f23",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-03-07T11:11:39.628Z",
+            "modified": "2024-03-07T11:12:53.161Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk4MDk2ODIsImV4cCI6MTcwOTgxMzI4Mn0.nsXAmnRT5RiQOV88zE1kEwX_B4-xIz6y3rGsH3mAyv0"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Bebés\",\n  \"description\": \"área donde se encuentras cosas para bebés\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a5418546-00a3-42ea-84e8-9b51e735cc11",
+            "colId": "df8b9549-6dcf-4d97-a8e5-cf7d05169397",
+            "containerId": "",
+            "name": "deleteCategory",
+            "url": "http://localhost:3000/registrationManagement/v1/category/65eb23ef0470176d5224dc9b",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-03-08T14:41:59.686Z",
+            "modified": "2024-03-08T14:44:30.551Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk5MDg4OTgsImV4cCI6MTcwOTkxMjQ5OH0.ulu_2LNFqm7kLE1tI__yM2Pp7SyCXzXLLhoFsfqvSwc"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

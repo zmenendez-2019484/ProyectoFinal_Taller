@@ -1,0 +1,238 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "PRODUCT",
+    "dateExported": "2024-03-09T05:03:02.252Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "a0948d6d-7c35-4838-8361-50ddc5aa1e13",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "postProduct",
+            "url": "http://localhost:3000/registrationManagement/v1/product",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-08T08:03:02.445Z",
+            "modified": "2024-03-08T14:43:42.967Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk5MDg4OTgsImV4cCI6MTcwOTkxMjQ5OH0.ulu_2LNFqm7kLE1tI__yM2Pp7SyCXzXLLhoFsfqvSwc"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Camisolas\",\n  \"description\": \"Camisolas de la premier\",\n  \"price\": \"40.99\",\n  \"category\": \"65eb23ef0470176d5224dc9b\",\n  \"stock\": \"80\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "8c024bbb-9ce4-461b-a466-7f7782ca3f4f",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "getAllProducts",
+            "url": "http://localhost:3000/registrationManagement/v1/product",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-08T08:13:03.098Z",
+            "modified": "2024-03-08T08:13:21.347Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk4ODQ5NTIsImV4cCI6MTcwOTg4ODU1Mn0.3rKHDoAJ4wwsPJeY2pQ6R3FS0AkVjnV3mLAXpqZ9YLc"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "aab67c1e-0fda-4037-9127-f22d11181723",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "getProductById",
+            "url": "http://localhost:3000/registrationManagement/v1/product/65eac755ad1da75a349e67fa",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-03-08T08:18:42.389Z",
+            "modified": "2024-03-08T08:19:27.521Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk4ODQ5NTIsImV4cCI6MTcwOTg4ODU1Mn0.3rKHDoAJ4wwsPJeY2pQ6R3FS0AkVjnV3mLAXpqZ9YLc"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c35c7e52-6ee4-47eb-895f-98fd6825ccbe",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "updateProduct",
+            "url": "http://localhost:3000/registrationManagement/v1/product/65eac9094c5082341ea14b79",
+            "method": "PUT",
+            "sortNum": 50000,
+            "created": "2024-03-08T09:18:35.363Z",
+            "modified": "2024-03-08T09:22:59.198Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk4ODk0OTEsImV4cCI6MTcwOTg5MzA5MX0.aQUx2kYDM7M4IDE2YEK_CGMb1ydjVZLTGyJLsUd9wL8"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Pachas\",\n  \"description\": \"Pachas para recién nacidos\",\n  \"price\": \"22.99\",\n  \"category\": \"65e9a041f12f8810c6ad8f23\",\n  \"stock\": \"80\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d0fb905a-05e0-4202-ac6f-e1fada2e7e3b",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "controlInvetory",
+            "url": "http://localhost:3000/registrationManagement/v1/product/control-inventory/65eac9094c5082341ea14b79",
+            "method": "PUT",
+            "sortNum": 60000,
+            "created": "2024-03-08T09:34:13.057Z",
+            "modified": "2024-03-08T09:35:36.647Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk4ODk0OTEsImV4cCI6MTcwOTg5MzA5MX0.aQUx2kYDM7M4IDE2YEK_CGMb1ydjVZLTGyJLsUd9wL8"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"stock\": \"100\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a1980bbd-e4aa-4028-8c8b-70e3b9117232",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "getBestSellingProducts",
+            "url": "http://localhost:3000/registrationManagement/v1/product/best/sellings",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-03-08T09:42:05.003Z",
+            "modified": "2024-03-08T11:02:08.502Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk4OTQyMDEsImV4cCI6MTcwOTg5NzgwMX0.PYkSM400Jnkoj9sPYLjp4EDjB0qODA6qiwgOK3YrH2k"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "52ae6ca8-df33-4f5d-a3be-e1d55053576c",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "getOutOfStockProducts",
+            "url": "http://localhost:3000/registrationManagement/v1/product/out/stock",
+            "method": "GET",
+            "sortNum": 80000,
+            "created": "2024-03-08T11:24:41.325Z",
+            "modified": "2024-03-08T11:28:11.234Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk4OTY5NTYsImV4cCI6MTcwOTkwMDU1Nn0.9L1IGjL0_FbaC1DHganRvsZF25AXKBVf7sRcaThpxxg"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a280c62b-e8ca-44e4-8cdc-ab7a34c5ab94",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "deleteProduct",
+            "url": "http://localhost:3000/registrationManagement/v1/product/65eaf67a400869f7ab9594b7",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2024-03-08T11:30:07.909Z",
+            "modified": "2024-03-08T11:31:09.435Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk4OTY5NTYsImV4cCI6MTcwOTkwMDU1Nn0.9L1IGjL0_FbaC1DHganRvsZF25AXKBVf7sRcaThpxxg"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a59dac14-20dd-4ae1-83ee-c72655d7c9a8",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "searchProducts",
+            "url": "http://localhost:3000/registrationManagement/v1/product/search",
+            "method": "POST",
+            "sortNum": 100000,
+            "created": "2024-03-08T11:33:12.770Z",
+            "modified": "2024-03-08T11:37:44.962Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmNlOGI1ZjQ1ZmI0YjI0M2E1ZGYiLCJpYXQiOjE3MDk4OTc4NTMsImV4cCI6MTcwOTkwMTQ1M30.1fgYT2dKA8lZ96aMHouJe7QzuGNWI_ApUmpJUYhR6MU"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"pachas\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5140aec2-bc52-47f8-b8c8-00ba1fed0a54",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "getCategories",
+            "url": "http://localhost:3000/registrationManagement/v1/product/get/category",
+            "method": "GET",
+            "sortNum": 120000,
+            "created": "2024-03-08T11:47:57.825Z",
+            "modified": "2024-03-08T11:48:53.310Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmNlOGI1ZjQ1ZmI0YjI0M2E1ZGYiLCJpYXQiOjE3MDk4OTc4NTMsImV4cCI6MTcwOTkwMTQ1M30.1fgYT2dKA8lZ96aMHouJe7QzuGNWI_ApUmpJUYhR6MU"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "5fd4b514-1118-447a-9cc2-39b3fbfe28d2",
+            "colId": "e5dfe512-84b0-4224-8d81-e618b4182fac",
+            "containerId": "",
+            "name": "getProductsByCategory",
+            "url": "http://localhost:3000/registrationManagement/v1/product/get/category/65eb192d66db755c085f3aab",
+            "method": "GET",
+            "sortNum": 130000,
+            "created": "2024-03-08T11:52:57.621Z",
+            "modified": "2024-03-08T15:03:37.297Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmNlOGI1ZjQ1ZmI0YjI0M2E1ZGYiLCJpYXQiOjE3MDk5MTAxNzcsImV4cCI6MTcwOTkxMzc3N30.2xll4FR8Zd3B8mi48i6o71VI7ExEflRa4-Ar3kz7GGc"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

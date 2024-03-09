@@ -1,0 +1,100 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "CART",
+    "dateExported": "2024-03-09T05:03:08.313Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "86ef720c-0af8-4cb8-9715-9eb81727eb88",
+            "colId": "57d2a68f-ed87-4c77-9c7e-0eb6c045ad0c",
+            "containerId": "",
+            "name": "postCart",
+            "url": "http://localhost:3000/registrationManagement/v1/cart",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-03-08T21:12:47.941Z",
+            "modified": "2024-03-09T03:29:04.371Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmNlOGI1ZjQ1ZmI0YjI0M2E1ZGYiLCJpYXQiOjE3MDk5NTM2OTYsImV4cCI6MTcwOTk1NzI5Nn0.2cgdRgF2Pvy0fShc45vrm9dDfQs36eFz07zNNyeek-g"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"productId\":\"65eac755ad1da75a349e67fa\",\n  \"quantity\": \"1\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "eb49def9-163c-49d7-a08e-ad60c8332924",
+            "colId": "57d2a68f-ed87-4c77-9c7e-0eb6c045ad0c",
+            "containerId": "",
+            "name": "getCart",
+            "url": "http://localhost:3000/registrationManagement/v1/cart",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-08T21:43:23.150Z",
+            "modified": "2024-03-09T03:23:49.415Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmNlOGI1ZjQ1ZmI0YjI0M2E1ZGYiLCJpYXQiOjE3MDk5NTM2OTYsImV4cCI6MTcwOTk1NzI5Nn0.2cgdRgF2Pvy0fShc45vrm9dDfQs36eFz07zNNyeek-g"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "dda33354-e531-47a2-8323-da8bdb15ff32",
+            "colId": "57d2a68f-ed87-4c77-9c7e-0eb6c045ad0c",
+            "containerId": "",
+            "name": "putCart",
+            "url": "http://localhost:3000/registrationManagement/v1/cart",
+            "method": "PUT",
+            "sortNum": 30000,
+            "created": "2024-03-08T22:06:13.431Z",
+            "modified": "2024-03-08T23:24:09.021Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmNlOGI1ZjQ1ZmI0YjI0M2E1ZGYiLCJpYXQiOjE3MDk5Mzg0NjAsImV4cCI6MTcwOTk0MjA2MH0.UE_g5P0kuK7DQBSr4u4_KXSzUQ-Ss_p2IIKD--vJPnM"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"productId\":\"65eac9094c5082341ea14b79\",\n  \"newQuantity\": \"2\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "a563a6e9-4f11-4e8b-b464-367ef2318f54",
+            "colId": "57d2a68f-ed87-4c77-9c7e-0eb6c045ad0c",
+            "containerId": "",
+            "name": "deleteCart",
+            "url": "http://localhost:3000/registrationManagement/v1/cart",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-03-08T22:53:31.336Z",
+            "modified": "2024-03-08T23:44:32.121Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmNlOGI1ZjQ1ZmI0YjI0M2E1ZGYiLCJpYXQiOjE3MDk5Mzg0NjAsImV4cCI6MTcwOTk0MjA2MH0.UE_g5P0kuK7DQBSr4u4_KXSzUQ-Ss_p2IIKD--vJPnM"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"productId\": \"65eac9094c5082341ea14b79\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

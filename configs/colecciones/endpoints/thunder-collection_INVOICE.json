@@ -1,0 +1,71 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "INVOICE",
+    "dateExported": "2024-03-09T05:03:23.074Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b7dae745-0bbd-49da-baa0-47c614908b3b",
+            "colId": "ee1efd85-e0a0-4669-be73-9267acc81e1a",
+            "containerId": "",
+            "name": "editInvoice",
+            "url": "http://localhost:3000/registrationManagement/v1/history",
+            "method": "PUT",
+            "sortNum": 10000,
+            "created": "2024-03-09T04:34:50.910Z",
+            "modified": "2024-03-09T04:48:26.610Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk5NTkyNzYsImV4cCI6MTcwOTk2Mjg3Nn0.7cs03-DSq_pw52d9Ldd3Dor0C3VFX0MYWG3kMHMIKQA"
+                }
+            ],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"invoiceId\":\"65ebd76fde3f150ca6b1004d\",\n  \"productId\":\"65eac755ad1da75a349e67fa\",\n  \"newQuantity\":\"5\"\n  \n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "2918cc21-b922-4138-9b49-aa0786aba651",
+            "colId": "ee1efd85-e0a0-4669-be73-9267acc81e1a",
+            "containerId": "",
+            "name": "getInvoiceDetails",
+            "url": "http://localhost:3000/registrationManagement/v1/invoice/details/65ebd663626ce18d73d2f5f9",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-03-09T04:52:44.331Z",
+            "modified": "2024-03-09T04:53:43.513Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk5NTkyNzYsImV4cCI6MTcwOTk2Mjg3Nn0.7cs03-DSq_pw52d9Ldd3Dor0C3VFX0MYWG3kMHMIKQA"
+                }
+            ],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "22624476-9222-4107-ba53-bb7136893c92",
+            "colId": "ee1efd85-e0a0-4669-be73-9267acc81e1a",
+            "containerId": "",
+            "name": "getUserInvoices",
+            "url": "http://localhost:3000/registrationManagement/v1/invoice/65e5fce8b5f45fb4b243a5df",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-03-09T04:54:12.369Z",
+            "modified": "2024-03-09T04:55:05.006Z",
+            "headers": [
+                {
+                    "name": "x-token",
+                    "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NWU1ZmM3YWI1ZjQ1ZmI0YjI0M2E1ZGIiLCJpYXQiOjE3MDk5NTkyNzYsImV4cCI6MTcwOTk2Mjg3Nn0.7cs03-DSq_pw52d9Ldd3Dor0C3VFX0MYWG3kMHMIKQA"
+                }
+            ],
+            "params": [],
+            "tests": []
+        }
+    ]
+}
