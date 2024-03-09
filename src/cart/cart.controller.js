@@ -4,17 +4,10 @@ import Product from "../products/product.model.js";
 //add to cart
 export const addToCart = async (req, res) => {
     try {
-        if (req.user.role !== 'CLIENT_ROLE') {
-            return res.status(401).json({
-                msg: "Not authorized to add cart"
-            });
-        }
-
-        // Obtiene el ID del usuario
         const userId = req.user._id;
         const { productId, quantity } = req.body;
 
-        // Asegúrate de que la cantidad es un número
+        // cantidad debe ser un número
         const quantityNumber = parseInt(quantity, 10);
 
         // Comprueba si el producto existe
@@ -32,17 +25,26 @@ export const addToCart = async (req, res) => {
         product.stock -= quantityNumber;
         await product.save();
 
-        // Busca el carrito del usuario o crea uno nuevo si no existe
-        let cart = await Cart.findOne({ userId: userId });
+        // Busca el carrito del usuario con status true
+        let cart = await Cart.findOne({ userId: userId, status: true });
+
+        // Busca un carrito inactivo del usuario
         if (!cart) {
-            cart = new Cart({ userId: userId });
-            await cart.save();
+            cart = await Cart.findOne({ userId: userId, status: false });
+            if (cart) {
+                //Lo encuentra, lo activa y lo guarda
+                cart.status = true;
+                await cart.save();
+            } else {
+                // SI no encuentra carrito, crea uno nuevo
+                cart = new Cart({ userId: userId, status: true });
+                await cart.save();
+            }
         }
 
-        // Agrega el producto al carrito o actualiza la cantidad si ya está en el carrito
+        // Agrega el producto al carrito, si ya está, incrementa la cantidad
         const itemIndex = cart.products.findIndex(item => item.productId.toString() === productId);
         if (itemIndex >= 0) {
-            // Si el producto ya está en el carrito, incrementa la cantidad
             cart.products[itemIndex].quantity += quantityNumber;
         } else {
             // Si el producto no está en el carrito, lo agrega
@@ -67,7 +69,7 @@ export const getCart = async (req, res) => {
     try {
         const userId = req.user._id;
 
-        // Buscar el carrito
+        // Buscar el carrito del usuario, con status true
         const cart = await Cart.findOne({ userId: userId, status: true }).populate('products.productId');
 
         if (!cart) {
@@ -81,31 +83,46 @@ export const getCart = async (req, res) => {
     }
 };
 
-
-//remove from cart
-export const removeFromCart = async (req, res) => {
+//delete cart
+export const deleteFromCart = async (req, res) => {
     try {
-        //jala el id del usuario
         const userId = req.user._id;
         const { productId } = req.body;
 
-        // Busca el carrito
-        const cart = await Cart.findOne({ userId: userId });
+        // Busca el carrito del usuario
+        const cart = await Cart.findOne({ userId: userId, status: true });
+
         if (!cart) {
             return res.status(404).json({ message: "Carrito no encontrado" });
         }
 
-        const itemIndex = cart.products.findIndex(item => item.productId.toString() === productId);
-        if (itemIndex < 0) {
+        //Encuentra el índice del producto en el carrito
+        const productIndex = cart.products.findIndex(item => item.productId.toString() === productId);
+
+        if (productIndex < 0) {
             return res.status(404).json({ message: "Producto no encontrado en el carrito" });
         }
 
-        // Eliminar el producto del carrito
-        cart.products.splice(itemIndex, 1);
+        //Jala la cantidad del producto en el carrito
+        const productQuantity = cart.products[productIndex].quantity;
 
-        // Cambia a false el status del carrito
-        cart.status = false;
+        // Busca el producto para actualizar su stock
+        const product = await Product.findById(productId);
+        if (!product) {
+            return res.status(404).json({ message: "Producto no encontrado" });
+        }
 
+        //Aumenta el stock
+        product.stock += productQuantity;
+        await product.save();
+
+        // Elimina el producto del carrito
+        cart.products.splice(productIndex, 1);
+
+        // Comprueba si el carrito está vacío
+        if (cart.products.length === 0) {
+            cart.status = false;
+        }
         await cart.save();
 
         res.status(200).json({
@@ -119,63 +136,69 @@ export const removeFromCart = async (req, res) => {
     }
 };
 
-//put cart
+// put cart
 export const putCart = async (req, res) => {
     try {
-        // Coprubea si el usuario tiene el rol correcto
-        if (req.user.role !== 'CLIENT_ROLE') {
-            return res.status(401).json({
-                msg: "No autorizado para actualizar el carrito"
-            });
-        }
-
-        // Obtiene el ID del usuario
         const userId = req.user._id;
         const { productId, newQuantity } = req.body;
 
+        //cantidad debe ser un número
+        const newQuantityNumber = parseInt(newQuantity, 10);
+
         // Busca el carrito del usuario
-        const cart = await Cart.findOne({ userId: userId });
+        const cart = await Cart.findOne({ userId: userId, status: true });
+
         if (!cart) {
             return res.status(404).json({ message: "Carrito no encontrado" });
         }
 
-        // Busca el producto en el carrito
-        const itemIndex = cart.products.findIndex(item => item.productId.toString() === productId);
-        if (itemIndex < 0) {
+        // Encuentra el índice del producto en el carrito
+        const productIndex = cart.products.findIndex(item => item.productId.toString() === productId);
+
+        if (productIndex < 0) {
             return res.status(404).json({ message: "Producto no encontrado en el carrito" });
         }
 
-        // Comprueba si hay suficiente stock para la nueva cantidad
+        //Canridad actual del producto en el carrito
+        const currentQuantity = cart.products[productIndex].quantity;
+
+        // Va a buscar el producto para actualizar su stock
         const product = await Product.findById(productId);
         if (!product) {
             return res.status(404).json({ message: "Producto no encontrado" });
         }
-        if (product.stock < newQuantity) {
-            return res.status(400).json({ message: "Stock insuficiente" });
+
+        // Cimprueba si la nueva cantidad es mayor o menor que la actual
+        if (newQuantityNumber > currentQuantity) {
+            // Si la nueva cantidad es mayor, verifica si hay suficiente stock
+            if (product.stock < (newQuantityNumber - currentQuantity)) {
+                return res.status(400).json({ message: "Stock insuficiente" });
+            }
+            // Aumenta el stock del producto
+            product.stock -= (newQuantityNumber - currentQuantity);
+        } else if (newQuantityNumber < currentQuantity) {
+            // Si la nueva cantidad es menor, devuelve el stock
+            product.stock += (currentQuantity - newQuantityNumber);
         }
 
-        // Actualiza la cantidad del producto en el carrito
-        cart.products[itemIndex].quantity = newQuantity;
+        // Actualiza la cantidad 
+        cart.products[productIndex].quantity = newQuantityNumber;
 
-        // Actualiza el stock del producto
-        product.stock -= (newQuantity - cart.products[itemIndex].quantity);
+        // Guarda los cambios
         await product.save();
-
-        // Guarda los cambios en el carrito
         await cart.save();
 
         res.status(200).json({
-            message: "Cantidad de producto actualizada en el carrito",
-            cart
+            message: "Cantidad de producto actualizada en el carrito", cart
         });
     } catch (error) {
         console.error(error);
         res.status(500).json({
-            message: "Error al actualizar el carrito",
-            error: error.message
+            message: "Error al actualizar cantidad de producto en el carrito", error: error.message
         });
     }
 };
+
 
 
 
