@@ -1,20 +1,18 @@
 import mongoose from 'mongoose';
 
 const invoiceSchema = new mongoose.Schema({
-    purchaseId: {
+    invoiceId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Purchase',
-        required: true
+        required: true,
+        unique: true
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
         required: true
     },
     products: [{
         productId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Product',
             required: true
         },
         quantity: {
@@ -24,20 +22,24 @@ const invoiceSchema = new mongoose.Schema({
         price: {
             type: Number,
             required: true
+        },
+        total: {
+            type: Number,
+            required: true
         }
     }],
     totalPrice: {
         type: Number,
         required: true
     },
-    invoiceDate: {
+    purchaseDate: {
         type: Date,
         default: Date.now
     },
     status: {
         type: String,
-        enum: ['pending', 'completed', 'cancelled'],
-        default: 'pending'
+        enum: ['completed', 'pending', 'cancelled'],
+        default: 'completed'
     }
 });
 

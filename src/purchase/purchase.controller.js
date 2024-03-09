@@ -1,5 +1,6 @@
 import Cart from "../cart/cart.model.js";
 import Purchase from "./purchase.model.js";
+import Invoice from "../invoice/invoice.model.js";
 
 export const completePurchase = async (req, res) => {
     try {
@@ -42,7 +43,7 @@ export const completePurchase = async (req, res) => {
         console.log('Compra completada y guardada:', purchase);
 
         // Generar la factura
-        const invoice = {
+        const invoiceData = {
             invoiceId: purchase._id,
             userId: purchase.userId,
             products: purchase.products.map(product => ({
@@ -55,7 +56,7 @@ export const completePurchase = async (req, res) => {
             purchaseDate: purchase.purchaseDate,
             status: purchase.status
         };
-        console.log('Factura generada:', invoice);
+        console.log('Factura generada:', invoiceData);
 
         // Crear un nuevo carrito de compras para el usuario
         const newCart = new Cart({
@@ -64,12 +65,17 @@ export const completePurchase = async (req, res) => {
             products: [] // Inicialmente, el nuevo carrito no tiene productos
         });
 
+        // Guardar la factura en la base de datos
+        const savedInvoice = new Invoice(invoiceData);
+        await savedInvoice.save();
+        console.log('Factura guardada:', savedInvoice);
+
         // Guardar el nuevo carrito en la base de datos
         await newCart.save();
         console.log('Nuevo carrito creado:', newCart);
 
         // Responder con éxito
-        res.status(200).json({ message: "Compra completada con éxito", purchase, invoice, newCart });
+        res.status(200).json({ message: "Compra completada con éxito", purchase, invoice: savedInvoice, newCart });
 
     } catch (error) {
         console.error('Error al completar la compra:', error);

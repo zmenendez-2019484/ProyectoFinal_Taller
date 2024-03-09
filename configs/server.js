@@ -8,6 +8,7 @@ import categoryRoutes from '../src/category/category.routes.js';
 import productRoutes from '../src/products/product.routes.js';
 import cartRoutes from '../src/cart/cart.routes.js';
 import purchaseRoutes from '../src/purchase/purchase.routes.js';
+import historyRoutes from '../src/invoice/invoice.routes.js';
 
 class Server {
     constructor() {
@@ -45,6 +46,13 @@ class Server {
         //purchase
         this.getPurchaseHistoryPath = '/registrationManagement/v1/purchase';
         this.completePurchasePath = '/registrationManagement/v1/purchase';
+        //history of purchase
+        this.getPurchaseHistoryPath = '/registrationManagement/v1/history';
+        //invoice
+        this.getInvoicePath = '/registrationManagement/v1/invoice';
+        this.getInvoiceDetailsPath = '/registrationManagement/v1/invoice';
+        this.editInvoicePath = '/registrationManagement/v1/invoice';
+
         this.middlewares();
         this.routes();
     }
@@ -93,6 +101,12 @@ class Server {
         //purchase
         this.app.use(this.getPurchaseHistoryPath, purchaseRoutes);
         this.app.use(this.completePurchasePath, purchaseRoutes);
+        //history of purchase
+        this.app.use(this.getPurchaseHistoryPath, historyRoutes);
+        //invoice
+        this.app.use(this.getInvoicePath, historyRoutes);
+        this.app.use(this.getInvoiceDetailsPath, historyRoutes);
+        this.app.use(this.editInvoicePath, historyRoutes);
     }
 
     listen() {

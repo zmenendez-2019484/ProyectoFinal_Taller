@@ -1,8 +1,14 @@
 import Cart from "./cart.model.js";
 import Product from "../products/product.model.js";
+
 //add to cart
 export const addToCart = async (req, res) => {
     try {
+        if (req.user.role !== 'CLIENT_ROLE') {
+            return res.status(401).json({
+                msg: "Not authorized to add to cart"
+            });
+        }
         const userId = req.user._id;
         const { productId, quantity } = req.body;
 
@@ -27,28 +33,18 @@ export const addToCart = async (req, res) => {
         // Busca el carrito del usuario con status true
         let cart = await Cart.findOne({ userId: userId, status: true });
 
-        // Si no hay un carrito activo, busca un carrito inactivo y lo activa
-        if (!cart) {
-            cart = await Cart.findOne({ userId: userId, status: false });
-            if (cart) {
-                // Activa el carrito inactivo
-                cart.status = true;
-                await cart.save();
-            } else {
-                // Si no encuentra carrito, crea uno nuevo
-                cart = new Cart({ userId: userId, status: true });
-                await cart.save();
-            }
+        // Si hay un carrito activo, lo inactiva
+        if (cart) {
+            cart.status = false;
+            await cart.save();
         }
 
-        // Agrega el producto al carrito, si ya está, incrementa la cantidad
-        const itemIndex = cart.products.findIndex(item => item.productId.toString() === productId);
-        if (itemIndex >= 0) {
-            cart.products[itemIndex].quantity += quantityNumber;
-        } else {
-            // Si el producto no está en el carrito, lo agrega
-            cart.products.push({ productId: productId, quantity: quantityNumber });
-        }
+        // Crea un nuevo carrito true
+        cart = new Cart({ userId: userId, status: true });
+        await cart.save();
+
+        // Agrega el producto al nuevo carrito true
+        cart.products.push({ productId: productId, quantity: quantityNumber });
         await cart.save();
 
         res.status(200).json({
@@ -65,6 +61,11 @@ export const addToCart = async (req, res) => {
 //get cart
 export const getCart = async (req, res) => {
     try {
+        if (req.user.role !== 'CLIENT_ROLE') {
+            return res.status(401).json({
+                msg: "Not authorized to view cart"
+            });
+        }
         const userId = req.user._id;
 
         // Buscar el carrito del usuario, con status true
@@ -84,6 +85,12 @@ export const getCart = async (req, res) => {
 //delete cart
 export const deleteFromCart = async (req, res) => {
     try {
+
+        if (req.user.role !== 'CLIENT_ROLE') {
+            return res.status(401).json({
+                msg: "Not authorized to delete cart"
+            });
+        }
         const userId = req.user._id;
         const { productId } = req.body;
 
@@ -94,7 +101,6 @@ export const deleteFromCart = async (req, res) => {
             return res.status(404).json({ message: "Carrito no encontrado" });
         }
 
-        //Encuentra el índice del producto en el carrito
         const productIndex = cart.products.findIndex(item => item.productId.toString() === productId);
 
         if (productIndex < 0) {
@@ -137,6 +143,12 @@ export const deleteFromCart = async (req, res) => {
 // put cart
 export const putCart = async (req, res) => {
     try {
+
+        if (req.user.role !== 'CLIENT_ROLE') {
+            return res.status(401).json({
+                msg: "Not authorized to update cart"
+            });
+        }
         const userId = req.user._id;
         const { productId, newQuantity } = req.body;
 

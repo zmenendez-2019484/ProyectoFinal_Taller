@@ -110,3 +110,16 @@ export const validateFieldAddCart = (req, res, next) => {
     }
     next();
 };
+const expectedFieldEditInvoice = ['invoiceId', 'productId', 'newQuantity'] ;
+export const validateFieldEditInvoice = (req, res, next) => {
+    const body = req.body;
+    const fields = Object.keys(body);
+    const isValid = fields.every(field => expectedFieldEditInvoice.includes(field));
+    if (!isValid) {
+        return res.status(400).json({
+            msg: 'Invalid field',
+            expectedFieldEditInvoice
+        });
+    }
+    next();
+};
